@@ -2,9 +2,6 @@ body {
     font-family: sans-serif;
     padding: 1rem;
     margin: 1rem;
-    display: flex;
-    align-content: center;
-    max-width: 100px;
 }
 
 .card-container {
