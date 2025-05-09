@@ -1,3 +1,4 @@
+// toido esto es el array con cada uno de los diccionarios
 const HEROES = [
     {
         nombre: "Bruce Wayne",
@@ -72,3 +73,130 @@ const HEROES = [
         descripcionCompleta: "Diana, princesa de las Amazonas, es una semidiosa entrenada en combate desde pequeña. Como Wonder Woman, defiende la paz, la justicia y la igualdad en el mundo humano."
     }
 ];
+
+// 
+class heroCard extends HTMLElement {
+    constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+
+    const container = document.createElement('div');
+    container.innerHTML = /*HTML*/`
+        <section>
+            <header>
+                <slot id="imagen"></slot>
+            </header>
+            <main>
+                <slot id="nombre"></slot>
+                <slot id="nombreClave"></slot>
+                <slot id="universo"></slot>
+                <slot id="año"></slot>
+                <slot id="descripcionResumida"></slot>
+            </main>
+            <footer>
+                <button id="button-main">Ver más</button>
+            </footer>
+        </section>
+    `;
+    
+
+    const style = document.createElement('style');
+    style.textContent = /*CSS*/`
+    section {
+        border: 2px solid #888;
+        padding: 12px;
+        border-radius: 10px;
+        font-family: Arial;
+        max-width: 400px;
+        background: #fefefe;
+    }
+    header {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #003366;
+    }
+    main {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #222;
+    }
+    footer {
+        font-size: 12px;
+        color: #555;
+        text-align: right;
+    }
+    `;
+
+    shadow.append(style, container);
+    }
+
+    connectedCallback() {
+        const imagen = this.shadowRoot.querySelector('#imagen');
+        const nombre = this.shadowRoot.querySelector('#nombre');
+        const nombreClave = this.shadowRoot.querySelector('#nombreClave');
+        const universo = this.shadowRoot.querySelector('#universo');
+        const año = this.shadowRoot.querySelector('#año');
+        const descripcionResumida = this.shadowRoot.querySelector('#descricpionResumida');
+
+        slot.addEventListener('slotchange', () => {
+            const elementos = slot.assignedElements();
+            info.textContent = `Elementos en el slot: ${elementos.length}`;
+        });
+    }
+}
+customElements.define("hero-card", heroCard);
+
+// 
+class heroFull extends HTMLElement {
+    constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+
+    const container = document.createElement('div');
+    container.innerHTML = `
+    <section>
+        <header>
+            <slot name="titulo">[Sin título]</slot>
+        </header>
+        <main>
+            <slot name="contenido">[Sin contenido]</slot>
+        </main>
+        <footer>
+            <slot name="footer">[Sin pie de página]</slot>
+        </footer>
+    </section>
+    `;
+
+    const style = document.createElement('style');
+    style.textContent = `
+    section {
+        border: 2px solid #888;
+        padding: 12px;
+        border-radius: 10px;
+        font-family: Arial;
+        max-width: 400px;
+        background: #fefefe;
+    }
+    header {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #003366;
+    }
+    main {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #222;
+    }
+    footer {
+        font-size: 12px;
+        color: #555;
+        text-align: right;
+    }
+    `;
+
+    shadow.append(style, container);
+    }
+}
+customElements.define("hero-full", heroFull);
