@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión heroes</title>
+    <title>Heroes</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/card_component.js" defer></script>
-    <script src="js/search_bar.js" defer></script>
 </head>
 <body>
-    <h1>Hello finder</h1>
-    <input id="search" type="text" placeholder="Buscar por nombre clave...">
-    <div id="cards" class="card-container"></div>
-    <!-- colocar ale atributo del nombre en la carta  -->
-    <search-bar></search-bar>
-    <hero-card heroe="Batman"></hero-card>
-    <hero-card heroe=""></hero-card>
-    <hero-card heroe=""></hero-card>
-    <hero-card heroe=""></hero-card>
-    <hero-card heroe=""></hero-card>
-    <hero-card heroe=""></hero-card>
-    <hero-card heroe=""></hero-card>
-    <hero-card heroe=""></hero-card>
-    <hero-card></hero-card>
-    
+    <input type="text" id="busqueda" placeholder="Buscar heroe...">
+    <div id="container"></div>
+    <cardd-heroe></cardd-heroe>
+    <div class="card">
+        <img src="../img/${nombre}.jpeg" alt="${nombre}">
+        <h2>${nombre}</h2>
+        <h3>${nombreClave}</h3>
+        <p><strong>Universo:</strong> ${universo}</p>
+        <p><strong>Año:</strong> ${year}</p>
+        <p>${descripcionResumida}</p>
+        <button id="abrir-full">Ver más</button>
+    </div>
+    <div class="full" id="full">
+        <div class="full-content">
+            <span class="close" id="cerrar-full">&times;</span>
+            <h2 class="nombree">${nombre} (${nombreClave})</h2>
+            <div class="cont">
+                <p><strong>Universo:</strong> ${universo}</p>
+                <p><strong>year:</strong> ${year}</p>
+                <p>${descripcion_full}</p>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js">
+    </script>
+</body>
 </body>
 </html>
